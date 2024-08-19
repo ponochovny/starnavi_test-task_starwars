@@ -18,7 +18,7 @@ function TextUpdaterNode({
 			className='block bg-white p-3 w-48 pb-5 rounded-lg shadow-md border border-gray-100'
 			{...restProps}
 		>
-			<div className='flex g-4'>
+			<div className='flex gap-4'>
 				<div
 					data-testid='person-card-image'
 					className='w-[50px] h-[50px] rounded-lg overflow-hidden'
