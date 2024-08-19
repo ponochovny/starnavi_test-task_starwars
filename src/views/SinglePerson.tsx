@@ -5,9 +5,9 @@ import '@xyflow/react/dist/style.css'
 import { useCallback, useEffect, useState } from 'react'
 import { getFilm, getPerson, getStarShip } from '../services/index.js'
 import { useNavigate, useParams } from 'react-router-dom'
-import { IFilm, IPerson, IStarShip } from '../services/types/index.ts'
+import { IFilm, IPerson, IStarShip } from '../services/types/index'
 import { AxiosResponse } from 'axios'
-import PersonCard from '../components/PersonCard.tsx'
+import PersonCard from '../components/PersonCard'
 
 const PERSON_NODE_ID = 'person'
 const nodeTypes = { personCard: PersonCard }
