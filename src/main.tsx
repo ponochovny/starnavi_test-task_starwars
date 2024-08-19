@@ -5,16 +5,21 @@ import './index.css'
 import MainPage from './views/Main'
 import SinglePerson from './views/SinglePerson'
 
-export const router = createBrowserRouter([
+export const router = createBrowserRouter(
+	[
+		{
+			path: '/',
+			element: <MainPage />,
+		},
+		{
+			path: '/person/:id',
+			element: <SinglePerson />,
+		},
+	],
 	{
-		path: '/',
-		element: <MainPage />,
-	},
-	{
-		path: '/person/:id',
-		element: <SinglePerson />,
-	},
-])
+		basename: import.meta.env.BASE_URL,
+	}
+)
 
 createRoot(document.getElementById('root')!).render(
 	<StrictMode>

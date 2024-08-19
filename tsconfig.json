@@ -3,7 +3,7 @@
     "target": "esnext",
     "jsx": "react-jsx",
     "lib": ["esnext", "dom"],
-    "module": "CommonJS",
+    "module": "ESNext",
     "moduleResolution": "Node",
     "types": ["@testing-library/jest-dom"],
     "strict": true,
