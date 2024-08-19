@@ -195,15 +195,8 @@ const SinglePerson = () => {
 	if (!id) return null
 
 	const reactFlowView = () => (
-		<div style={{ width: '80%', height: '600px' }}>
-			<div
-				style={{
-					height: '100%',
-					boxShadow: '0px 10px 15px #b8b8b8',
-					borderRadius: '20px',
-					border: '1px solid #e0e0e0',
-				}}
-			>
+		<div className='w-[80%] h-[600px]'>
+			<div className='h-full shadow-lg rounded-2xl border border-gray-100'>
 				<ReactFlow nodes={nodes} edges={edges} nodeTypes={nodeTypes} fitView>
 					<Background />
 					<Controls />
@@ -213,18 +206,16 @@ const SinglePerson = () => {
 	)
 
 	return (
-		<div
-			style={{
-				display: 'flex',
-				alignItems: 'center',
-				flexDirection: 'column',
-				gap: '16px',
-				paddingBottom: '40px',
-			}}
-		>
-			<div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
-				<button onClick={() => navigate(-1)}>{'<<'}</button>
-				<h1>{person?.name}</h1>
+		<div className='flex items-center flex-col gap-4 py-10'>
+			<div className='flex items-center gap-2'>
+				<button
+					onClick={() => navigate(-1)}
+					className='relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-30'
+					title='Main page'
+				>
+					{'<<'}
+				</button>
+				<h1 className='text-4xl font-bold'>{person?.name}</h1>
 			</div>
 			{show && reactFlowView()}
 		</div>

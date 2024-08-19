@@ -71,10 +71,19 @@ function Main() {
 	}, [searchParams, fetchData])
 
 	return (
-		<div className='ml-4'>
-			<h2 id='heading' data-testid='heading'>
-				Characters list
-			</h2>
+		<div className='mx-4 mb-10 mt-12 flex flex-col gap-2'>
+			<div className='mb-4'>
+				<p className='text-slate-500 hover:text-slate-600'>
+					StarWars Characters
+				</p>
+				<h2
+					id='heading'
+					data-testid='heading'
+					className='mt-3 text-3xl font-extrabold tracking-tight text-slate-900'
+				>
+					Characters list
+				</h2>
+			</div>
 			<CharactersList
 				list={people}
 				loading={loading}

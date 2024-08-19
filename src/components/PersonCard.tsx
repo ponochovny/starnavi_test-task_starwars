@@ -1,7 +1,7 @@
 import { Handle, Position } from '@xyflow/react'
 import { IPerson } from '../services/types/index.js'
 
-function PersonCard({
+function TextUpdaterNode({
 	data,
 	isConnectable,
 	isTesting,
@@ -15,41 +15,25 @@ function PersonCard({
 
 	return (
 		<div
-			className='text-updater-node'
-			style={{ width: '180px', padding: '16px', paddingBottom: '20px' }}
+			className='block bg-white p-3 w-48 pb-5 rounded-lg shadow-md border border-gray-100'
 			{...restProps}
 		>
-			<div style={{ display: 'flex', gap: '16px' }}>
+			<div className='flex g-4'>
 				<div
 					data-testid='person-card-image'
-					style={{
-						width: '50px',
-						height: '50px',
-						borderRadius: '8px',
-						overflow: 'hidden',
-					}}
+					className='w-[50px] h-[50px] rounded-lg overflow-hidden'
 				>
 					<img
 						src={`https://starwars-visualguide.com/assets/img/characters/${person?.id}.jpg`}
 						alt={person.name}
-						style={{
-							objectFit: 'cover',
-							objectPosition: 'top',
-							width: '100%',
-							height: '100%',
-						}}
+						className='object-cover object-top w-full h-full'
 					/>
 				</div>
 				<div
 					data-testid='person-card-description'
-					style={{
-						display: 'flex',
-						flexDirection: 'column',
-						gap: '2px',
-						fontSize: '12px',
-					}}
+					className='flex flex-col gap-0.5 text-xs'
 				>
-					<p style={{ fontWeight: 'bold', fontSize: '16px' }}>{person.name}</p>
+					<p className='font-bold text-base'>{person.name}</p>
 					<p>Gender: {person.gender}</p>
 					<p>Height: {person.height} inch</p>
 					<p>Eye color: {person.eye_color}</p>
@@ -70,4 +54,4 @@ function PersonCard({
 	)
 }
 
-export default PersonCard
+export default TextUpdaterNode
