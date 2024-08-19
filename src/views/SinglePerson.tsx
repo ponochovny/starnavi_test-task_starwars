@@ -87,8 +87,6 @@ const SinglePerson = () => {
 		filmShipsData: AxiosResponse<IStarShip>[],
 		idx: number
 	) {
-		console.log('filmShipsData', filmShipsData)
-
 		createNode({
 			id: 'film-' + filmData.title,
 			type: 'output',
@@ -125,8 +123,6 @@ const SinglePerson = () => {
 			const filmsPromises = films.map((film_id) => getFilm(film_id))
 			const result = await Promise.all(filmsPromises)
 			result.forEach(async ({ data: filmData }: { data: IFilm }, idx) => {
-				console.log('film', idx, filmData)
-
 				createNode({
 					id: 'film-' + filmData.id + '-' + idx,
 					type: 'input',
