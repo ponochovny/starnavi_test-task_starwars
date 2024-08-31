@@ -4,6 +4,7 @@ import { getPeople } from '../services'
 import type { IPerson } from '../services/types'
 import { CharactersList } from '../components/CharactersList'
 import { Pagination } from '../components/Pagination'
+import PageTitle from '../components/PageTitle'
 
 const PER_PAGE = 10
 
@@ -71,19 +72,9 @@ function Main() {
 	}, [searchParams, fetchData])
 
 	return (
-		<div className='mx-4 mb-10 mt-12 flex flex-col gap-2'>
-			<div className='mb-4'>
-				<p className='text-slate-500 hover:text-slate-600'>
-					StarWars Characters
-				</p>
-				<h2
-					id='heading'
-					data-testid='heading'
-					className='mt-3 text-3xl font-extrabold tracking-tight text-slate-900'
-				>
-					Characters list
-				</h2>
-			</div>
+		<div className='flex flex-col gap-2 mx-4 mt-12 mb-10'>
+			<PageTitle subtitle='StarWars Characters' title='Characters list' />
+
 			<CharactersList
 				list={people}
 				loading={loading}

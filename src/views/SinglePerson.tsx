@@ -8,6 +8,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { IFilm, IPerson, IStarShip } from '../services/types/index'
 import { AxiosResponse } from 'axios'
 import PersonCard from '../components/PersonCard'
+import PageTitle from '../components/PageTitle.js'
 
 const PERSON_NODE_ID = 'person'
 const nodeTypes = { personCard: PersonCard }
@@ -15,6 +16,7 @@ const nodeTypes = { personCard: PersonCard }
 const SinglePerson = () => {
 	const navigate = useNavigate()
 	const { id } = useParams()
+	const [loading, setLoading] = useState<boolean>(true)
 	const [person, setPerson] = useState<IPerson | null>(null)
 	const [nodes, setNodes] = useState<Node[]>([])
 	const [edges, setEdges] = useState<Edge[]>([])
@@ -178,9 +180,12 @@ const SinglePerson = () => {
 	}
 
 	const fetchData = useCallback((id: number) => {
+		setLoading(true)
+
 		getPerson(id)
 			.then(({ data }) => handlePersonDataSuccess(data))
 			.catch((error) => alert(JSON.stringify(error)))
+			.finally(() => setLoading(false))
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
@@ -192,7 +197,7 @@ const SinglePerson = () => {
 
 	const reactFlowView = () => (
 		<div className='w-[80%] h-[600px]'>
-			<div className='h-full shadow-lg rounded-2xl border border-gray-100'>
+			<div className='h-full border border-gray-100 shadow-lg rounded-2xl'>
 				<ReactFlow nodes={nodes} edges={edges} nodeTypes={nodeTypes} fitView>
 					<Background />
 					<Controls />
@@ -202,16 +207,27 @@ const SinglePerson = () => {
 	)
 
 	return (
-		<div className='flex items-center flex-col gap-4 py-10'>
-			<div className='flex items-center gap-2'>
+		<div className='w-full gap-2 mx-4 mt-12 mb-10'>
+			<div className='flex flex-col items-start gap-4'>
 				<button
 					onClick={() => navigate(-1)}
-					className='relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-30'
+					className='relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-30'
 					title='Main page'
 				>
 					{'<<'}
 				</button>
-				<h1 className='text-4xl font-bold'>{person?.name}</h1>
+				<PageTitle
+					subtitle='StarWars Character page'
+					title={
+						loading
+							? 'Fetching data...'
+							: person?.name
+							? person?.name
+							: !loading && !person
+							? 'No data'
+							: ''
+					}
+				/>
 			</div>
 			{show && reactFlowView()}
 		</div>
