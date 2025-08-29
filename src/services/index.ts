@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { IPerson, IFilm, IStarShip } from './types'
 
-const BASE_URL = 'https://sw-api.starnavi.io'
+const BASE_URL = 'https://swapi.info/api'
 
 export function getPeople(page_count: number = 1) {
 	return axios.get<{
